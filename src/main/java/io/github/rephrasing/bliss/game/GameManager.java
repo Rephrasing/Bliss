@@ -15,8 +15,6 @@ public interface GameManager<P extends GamePlayer> {
     Optional<Game<P>> getGameById(long id);
     Game<P> getGameByUser(P player);
 
-    Game<P> createGame();
-
     default ScheduledFuture<?> startGameLoop(Game<P> game, long rate, TimeUnit seconds) {
         return BlissScheduler.runTaskAtFixedRateAsync(() -> {
             if (game.isRunning()) game.gameLoop();

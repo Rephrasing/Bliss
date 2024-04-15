@@ -22,7 +22,6 @@ public interface Game<P extends GamePlayer> {
 
     @NotNull List<P> getPlayers();
 
-
     default <G extends Game<P>> G as(Class<G> clazz) {
         return clazz.cast(this);
     }
@@ -33,17 +32,5 @@ public interface Game<P extends GamePlayer> {
 
     default Optional<P> getGamePlayer(long id) {
         return getPlayers().stream().filter(p -> p.getId() == id).findFirst();
-    }
-
-    default boolean removePlayer(P player) {
-        return getPlayers().removeIf(p -> p.getId() == player.getId());
-    }
-
-    default boolean addPlayer(P player) {
-        if (getGamePlayer(player.getId()).isEmpty()) {
-            getPlayers().add(player);
-            return true;
-        }
-        return false;
     }
 }
