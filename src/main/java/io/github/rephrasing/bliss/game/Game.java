@@ -1,5 +1,6 @@
 package io.github.rephrasing.bliss.game;
 
+import io.github.rephrasing.bliss.async.BlissTask;
 import io.github.rephrasing.bliss.user.GamePlayer;
 
 import org.jetbrains.annotations.NotNull;
@@ -14,11 +15,11 @@ public interface Game<P extends GamePlayer> {
     int getMinSize();
     int getMaxSize();
     String getGameTitle();
-
-    void start();
+    void onStart();
     boolean isRunning();
-    void gameLoop();
-    void end();
+    void setRunning(boolean running);
+    GameLoop getGameLoop();
+    void onEnd();
 
     @NotNull List<P> getPlayers();
 
